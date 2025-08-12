@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Felix — Resume & Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+      .grad{background:
+        radial-gradient(1200px 400px at 10% -10%, rgba(99,102,241,.15), transparent),
+        radial-gradient(1200px 400px at 90% -10%, rgba(16,185,129,.15), transparent);
+      }
+    </style>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  </head>
+  <body class="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased">
+    <div id="root"></div>
+
+    <script type="text/javascript">
+      const e = React.createElement;
+
+      const data = {
+        name: "Felix R. Collazo Helgeson",
+        title: "Prompt Engineer & AI Content Ops • Bilingual Writer • Archaeologist (Remote)",
+        tagline: "Bilingual (EN/ES) prompt engineer focused on research-grade case studies, Veo 3 video generation, content ops, and advertising workflows—grounded in editorial rigor and public-sector experience.",
+        contact: {
+          email: "Felixcolahelllolz@gmail.com",
+          phone: "803-404-7609",
+          location: "Columbia, South Carolina",
+          github: "https://github.com/your-username",
+          linkedin: "https://www.linkedin.com/in/your-profile"
+        },
+        skills: [
+          "Bilingual (EN/ES)","Chat & Email Support","Windows OS Troubleshooting","Microsoft Office (Excel/Word/Outlook)",
+          "ArcGIS, Avenza, GPS","Photoshop & Visual Docs","WordPress & CMS","Digital Archiving","Security+ (studying)",
+          "Section 106 / NHPA","AI Prompt Engineering for Case Studies","Video Generation (Veo3)","Content Creation & Management",
+          "Advertising Strategy","Portfolio & PDF Production","Light HTML/CSS/JS"
+        ],
+        experience: [
+          {
+            role: "Archaeologist (GS-7)",
+            org: "USDA NRCS — Caribbean Area (Corozal, PR)",
+            points: [
+              "Reviewed conservation plans (ProTracts, ArcGIS) for Section 106 / NEPA compliance under PR Programmatic Agreement.",
+              "Guided planners and producers to protect historic properties while enabling funding approvals.",
+              "Prepared maps and compliance documentation for cultural resource reviews."
+            ]
+          },
+          {
+            role: "Archaeologist (Resource Assistant GS-5/7)",
+            org: "USDA Forest Service — Apache–Sitgreaves NFs (AZ)",
+            points: [
+              "Led field surveys; digitized records for NARA; produced technical site reports.",
+              "Used ArcGIS/Avenza/GPS; collaborated with crews and volunteers as section lead.",
+              "Recorded historic structures for NRHP eligibility; maintained data quality."
+            ]
+          },
+          {
+            role: "Bilingual Writer (Intern)",
+            org: "Latin American News Digest (Remote)",
+            points: [
+              "Translated and summarized Spanish-language news for academic readership.",
+              "Managed WordPress posts; delivered weekly content with strong QA."
+            ]
+          }
+        ],
+        education: [
+          { degree: "B.A., Anthropology (Cum Laude) — University of South Carolina", meta: "Minor: Geography • GPA 3.71 • Dean’s List 2021–2023", year: "2023" },
+          { degree: "A.A. — Midlands Technical College", meta: "2020", year: "2020" }
+        ],
+        certs: [
+          "CompTIA Security+ (in progress; target Sep 2025)",
+          "PADI Advanced Open Water Diver",
+          "Section 106 Essential Training (ACHP)",
+          "Cultural Resources Training (USDA AgLearn)",
+          "Section 508 Accessibility Awareness",
+          "FS–USDA Information Security Awareness",
+          "Project Archaeology: Investigating Shelter — Virtual Educator Workshop"
+        ],
+        portfolio: [
+          { title: "Veo 3 Short-Form Video Series", desc: "Prompted, iterated, and storyboarded AI-generated clips; delivery-ready assets and captions.", href: "#" },
+          { title: "Ad Creative & Content Ops", desc: "Managed briefs, variants, and QC for multi-asset content cycles; export to PDF/portfolio.", href: "#" },
+          { title: "AI Prompt Engineering: Taíno Social Structure Case Study", desc: "Bilingual (EN/ES) prompt design with audit trail, citations, and stance labeling.", href: "#" },
+          { title: "Migration Timeline: Taíno/Arawakan Movements", desc: "Interactive timeline + sources for teaching and research.", href: "#" },
+          { title: "Public Archaeology: PIT Ceramic Guide (USFS)", desc: "Volunteer-facing guide for ceramic ID and preservation methodology.", href: "#" }
+        ],
+        resumeHref: "./FelixCollazoHelgesonFederalResume.pdf"
+      };
+
+      function Badge({ children }) {
+        return e('span', { className: 'inline-flex items-center rounded-full border px-3 py-1 text-sm dark:border-zinc-700' }, children);
+      }
+
+      function Section({ id, title, children }) {
+        return e('section', { id, className: 'scroll-mt-24 py-16' },
+          e('div', { className: 'mx-auto max-w-5xl px-6' },
+            e('h2', { className: 'mb-6 text-2xl font-semibold tracking-tight md:text-3xl' }, title),
+            children
+          )
+        );
+      }
+
+      function useTheme() {
+        const [dark, setDark] = React.useState(false);
+        React.useEffect(() => {
+          if (dark) document.documentElement.classList.add('dark');
+          else document.documentElement.classList.remove('dark');
+        }, [dark]);
+        return { dark, setDark };
+      }
+
+      function CounterCard({ value, label }) {
+        const [count, setCount] = React.useState(0);
+        React.useEffect(() => {
+          let start = 0;
+          const end = Number(value);
+          const duration = 1200;
+          const step = Math.max(1, Math.floor(end / 120));
+          const t0 = performance.now();
+          const raf = () => {
+            const elapsed = performance.now() - t0;
+            const next = Math.min(end, Math.floor((elapsed / duration) * end));
+            setCount(next - (next % step));
+            if (next < end) requestAnimationFrame(raf);
+          };
+          requestAnimationFrame(raf);
+        }, [value]);
+        return e('div', { className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm' },
+          e('div', { className: 'p-4' },
+            e('div', { className: 'text-3xl font-bold' }, `${count}+`),
+            e('div', { className: 'mt-1 text-sm text-zinc-500 dark:text-zinc-400' }, label)
+          )
+        );
+      }
+
+      function App() {
+        const { dark, setDark } = useTheme();
+        const counters = React.useMemo(() => ([
+          { label: "Field & Federal Service Hours", value: 1480 },
+          { label: "Customer Service (EN/ES) Served", value: 5000 },
+          { label: "Certs / Trainings", value: data.certs.length }
+        ]), []);
+
+        return e('div', { className: 'min-h-screen' },
+          e('header', { className: 'sticky top-0 z-50 border-b bg-white/70 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70' },
+            e('div', { className: 'mx-auto flex max-w-6xl items-center justify-between px-6 py-3' },
+              e('a', { href: '#top', className: 'font-semibold tracking-tight' }, data.name),
+              e('nav', { className: 'hidden gap-6 md:flex' },
+                e('a', { href: '#about', className: 'hover:opacity-80' }, 'About'),
+                e('a', { href: '#skills', className: 'hover:opacity-80' }, 'Skills'),
+                e('a', { href: '#experience', className: 'hover:opacity-80' }, 'Experience'),
+                e('a', { href: '#education', className: 'hover:opacity-80' }, 'Education'),
+                e('a', { href: '#portfolio', className: 'hover:opacity-80' }, 'Portfolio'),
+                e('a', { href: '#contact', className: 'hover:opacity-80' }, 'Contact')
+              ),
+              e('div', { className: 'flex items-center gap-2' },
+                e('button', { 'aria-label': 'Toggle theme', className: 'p-2 rounded-2xl text-zinc-900 hover:bg-zinc-100 dark:text-zinc-100 dark:hover:bg-zinc-900',
+                  onClick: () => setDark(!dark) }, dark ? '☀️' : '🌙'),
+                e('a', { href: data.resumeHref, target: '_blank', rel: 'noreferrer' },
+                  e('button', { className: 'px-4 py-2 rounded-2xl bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 gap-2 inline-flex items-center' },
+                    e('span', null, '⬇️'), e('span', null, 'Resume')
+                  )
+                )
+              )
+            )
+          ),
+          e('div', { id: 'top', className: 'grad border-b dark:border-zinc-800' },
+            e('div', { className: 'mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-16 md:grid-cols-5' },
+              e('div', { className: 'md:col-span-3' },
+                e('h1', { className: 'text-3xl font-bold tracking-tight md:text-5xl' }, data.name),
+                e('p', { className: 'mt-3 text-lg text-zinc-600 dark:text-zinc-300' }, data.title),
+                e('p', { className: 'mt-4 max-w-2xl text-zinc-600 dark:text-zinc-300' }, data.tagline),
+                e('div', { className: 'mt-6 flex flex-wrap gap-3' },
+                  e('a', { href: '#portfolio' },
+                    e('button', { className: 'px-4 py-2 rounded-2xl bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 inline-flex items-center gap-2' }, '📁', 'View Portfolio')
+                  ),
+                  e('a', { href: data.resumeHref, target: '_blank', rel: 'noreferrer' },
+                    e('button', { className: 'px-4 py-2 rounded-2xl border border-zinc-300 text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900 inline-flex items-center gap-2' }, '⬇️', 'Download Resume')
+                  )
+                ),
+                e('div', { className: 'mt-10 grid grid-cols-3 gap-6' },
+                  counters.map((c, i) => e(CounterCard, { key: i, value: c.value, label: c.label }))
+                )
+              ),
+              e('div', { className: 'md:col-span-2' },
+                e('div', { className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm' },
+                  e('div', { className: 'px-4 pt-4' },
+                    e('h3', { className: 'text-lg font-semibold' }, 'Contact')
+                  ),
+                  e('div', { className: 'px-4 pb-4 space-y-3 text-sm' },
+                    e('a', { className: 'flex items-center gap-2 hover:underline', href: `mailto:${data.contact.email}` }, '✉️', data.contact.email),
+                    e('a', { className: 'flex items-center gap-2 hover:underline', href: `tel:${data.contact.phone}` }, '📞', data.contact.phone),
+                    e('div', { className: 'flex items-center gap-2' }, '📍', data.contact.location),
+                    e('div', { className: 'pl-6 text-xs text-zinc-500' }, '(Columbia, SC • Puerto Rico • Remote)'),
+                    e('div', { className: 'flex gap-3 pt-2' },
+                      e('a', { href: data.contact.github, target: '_blank', rel: 'noreferrer', className: 'inline-flex items-center gap-2 hover:underline' }, '🐙', 'GitHub'),
+                      e('a', { href: data.contact.linkedin, target: '_blank', rel: 'noreferrer', className: 'inline-flex items-center gap-2 hover:underline' }, '🔗', 'LinkedIn')
+                    )
+                  )
+                )
+              )
+            )
+          ),
+          e(Section, { id: 'about', title: 'About' },
+            e('div', { className: 'max-w-3xl text-zinc-700 dark:text-zinc-300' },
+              'Bilingual prompt engineer and content ops generalist with a foundation in archaeology and federal compliance. Experienced delivering research-grade prompts, Veo 3 video assets, portfolio-ready PDFs, and advertising-aligned content while maintaining accuracy, accessibility, and smooth remote collaboration. Over 1,480 combined hours in the field and federal archaeology service. Customer service experience includes selling to over 5,000 soldiers every weekend as a vendor at Ft. Jackson. Skilled in archaeological writing, fieldwork, and lab analysis, with proven bilingual communication supporting both editorial and operational goals.'
+            )
+          ),
+          e(Section, { id: 'skills', title: 'Core Skills' },
+            e('div', { className: 'flex flex-wrap gap-2' },
+              data.skills.map((s) => e(Badge, { key: s }, s))
+            )
+          ),
+          e(Section, { id: 'experience', title: 'Experience' },
+            e('div', { className: 'grid gap-4' },
+              data.experience.map((job) =>
+                e('div', { key: job.role, className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm' },
+                  e('div', { className: 'px-4 pt-4' },
+                    e('h3', { className: 'text-lg font-semibold' },
+                      job.role, ' — ', e('span', { className: 'font-normal text-zinc-500' }, job.org)
+                    )
+                  ),
+                  e('div', { className: 'px-4 pb-4 pt-0' },
+                    e('ul', { className: 'list-disc space-y-2 pl-5 text-sm text-zinc-700 dark:text-zinc-300' },
+                      job.points.map((p, i) => e('li', { key: i }, p))
+                    )
+                  )
+                )
+              )
+            )
+          ),
+          e(Section, { id: 'education', title: 'Education & Certifications' },
+            e('div', { className: 'grid gap-4 md:grid-cols-2' },
+              e('div', { className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm' },
+                e('div', { className: 'px-4 pt-4' }, e('h3', { className: 'text-lg font-semibold' }, 'Education')),
+                e('div', { className: 'px-4 pb-4 space-y-3 text-sm' },
+                  data.education.map((ed, i) =>
+                    e('div', { key: i },
+                      e('div', { className: 'font-medium' }, ed.degree),
+                      ed.meta ? e('div', { className: 'text-zinc-500' }, ed.meta) : null
+                    )
+                  )
+                )
+              ),
+              e('div', { className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm' },
+                e('div', { className: 'px-4 pt-4' }, e('h3', { className: 'text-lg font-semibold' }, 'Certifications & Training')),
+                e('div', { className: 'px-4 pb-4 text-sm' },
+                  e('ul', { className: 'list-disc pl-5 space-y-2' },
+                    data.certs.map((c) => e('li', { key: c }, c))
+                  )
+                )
+              )
+            )
+          ),
+          e(Section, { id: 'portfolio', title: 'Portfolio' },
+            e('div', { className: 'grid gap-4 md:grid-cols-3' },
+              data.portfolio.map((p) =>
+                e('div', { key: p.title, className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm group' },
+                  e('div', { className: 'px-4 pt-4' }, e('h3', { className: 'text-base font-semibold' }, p.title)),
+                  e('div', { className: 'px-4 pb-4' },
+                    e('p', { className: 'min-h-[60px] text-sm text-zinc-600 dark:text-zinc-300' }, p.desc),
+                    e('a', { href: p.href, target: '_blank', rel: 'noreferrer', className: 'mt-4 inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400' }, 'Open →')
+                  )
+                )
+              )
+            )
+          ),
+          e(Section, { id: 'contact', title: 'Contact' },
+            e('div', { className: 'rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm' },
+              e('div', { className: 'p-6 flex flex-wrap items-center gap-4 text-sm' },
+                e('a', { className: 'inline-flex items-center gap-2 hover:underline', href: `mailto:${data.contact.email}` }, '✉️', data.contact.email),
+                e('a', { className: 'inline-flex items-center gap-2 hover:underline', href: `tel:${data.contact.phone}` }, '📞', data.contact.phone),
+                e('span', { className: 'inline-flex items-center gap-2' }, '📍', data.contact.location),
+                e('span', { className: 'text-xs text-zinc-500' }, '(Columbia, SC • Puerto Rico • Remote)'),
+                e('a', { className: 'inline-flex items-center gap-2 hover:underline', href: data.contact.github, target: '_blank', rel: 'noreferrer' }, '🐙', 'GitHub'),
+                e('a', { className: 'inline-flex items-center gap-2 hover:underline', href: data.contact.linkedin, target: '_blank', rel: 'noreferrer' }, '🔗', 'LinkedIn')
+              )
+            )
+          ),
+          e('footer', { className: 'border-t py-8 text-center text-xs text-zinc-500 dark:border-zinc-800' },
+            `© ${new Date().getFullYear()} ${data.name}. Built without a build step (single file).`
+          )
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(e(App));
+    </script>
+  </body>
+</html>
